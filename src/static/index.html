@@ -46,5 +46,48 @@
     </footer>
 
     <script src="app.js"></script>
+
+    <script>
+      // Sample JavaScript to demonstrate dynamic activity loading
+      document.addEventListener('DOMContentLoaded', function () {
+        const activities = [
+          {
+            name: 'Basketball Team',
+            description: 'Join the Mergington Basketball Team to improve your skills and compete with other schools.',
+            schedule: 'Mon, Wed, Fri - 4 PM to 6 PM',
+            max_participants: 15,
+            participants: ['John Doe', 'Jane Smith']
+          },
+          {
+            name: 'Drama Club',
+            description: 'Explore your acting skills and participate in school plays with the Drama Club.',
+            schedule: 'Tue, Thu - 3 PM to 5 PM',
+            max_participants: 10,
+            participants: []
+          }
+        ];
+
+        const activitiesList = document.getElementById('activities-list');
+        activitiesList.innerHTML = ''; // Clear loading text
+
+        activities.forEach(activity => {
+          const activityCard = document.createElement('div');
+          activityCard.classList.add('activity-card');
+          activityCard.innerHTML = `
+            <h4>${activity.name}</h4>
+            <p><strong>Description:</strong> ${activity.description}</p>
+            <p><strong>Schedule:</strong> ${activity.schedule}</p>
+            <p><strong>Max Participants:</strong> ${activity.max_participants}</p>
+            <div class="participants-section">
+              <strong>Participants:</strong>
+              <ul class="participants-list">
+                ${activity.participants.length > 0 ? activity.participants.map(p => `<li>${p}</li>`).join('') : '<li class="no-participants">No participants yet</li>'}
+              </ul>
+            </div>
+          `;
+          activitiesList.appendChild(activityCard);
+        });
+      });
+    </script>
   </body>
 </html>
